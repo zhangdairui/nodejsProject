@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <!-- Header Part Start -->
+
+
+
+<header class='header-area'>
+  <!-- header-top -->
+  <div class='header-top'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-12'>
+          <div class='header-top-item d-block d-md-flex justify-content-between align-items-center'>
+              <div class='header-contact'>
+                <ul>
+                 <li><a href='tel:+125123658'>Call us: CS631-631-631</a></li>
+                 <li><a href='mailto:XXX'>Email: dz9@njit.edu</a></li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- header-main-->
+  <div class='main-header'>
+    <div class='container'>
+        <div class='row align-items-center'>
+            <div class='col-lg-2 col-md-3'>
+                <div class='logo'>
+                    <a href='/'><img src='/images/NFClogo.png' height=90px alt='logo'></a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- header-menu(navi&cart&account) -->
+  <div class='header-menu'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-12'>
+          <div class='navigation'>
+            <nav class='navbar navbar-expand-lg navbar-light '>
+
+                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                    <span class='toggler-icon'></span>
+                    <span class='toggler-icon'></span>
+                    <span class='toggler-icon'></span>
+                </button> <!-- navbar toggler -->
+
+                <div class='collapse navbar-collapse sub-menu-bar' id='navbarSupportedContent'>
+                  <ul class='navbar-nav mr-auto'>
+                    <li class='nav-item active'><a class='nav-link' href='/'>Home</a></li>
+                    <li class='nav-item'>
+                      <a class='nav-link' href='/account'>Account</a>
+                    </li>
+                    <li class='nav-item'>
+                      <a class='nav-link' href='/about'>About</a>
+                    </li>
+                  </ul>
+                </div> <!-- navbar collapse -->
+           </nav>
+        </div> <!-- navigation -->
+
+       </div>
+     </div>
+   </div>
+  </div>
+</header>
+<!-- Header Part End-->
+<br><br>
+
+<section class="col-sm-4 m-auto pt-50">
+        
+<div class="card">
+<article class="card-body">
+    <h4 class="card-title text-center mb-4 mt-1">Sign Up</h4>
+   
+    <form action="/signup" method="post">
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+         </div>
+        <input name="user" class="form-control" placeholder="Email Address" type="email">
+    </div> <!-- input-group.// -->
+
+    </div> <!-- form-group// -->
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-unlock-alt"></i> </span>
+         </div>
+        <input name="pwd1" id="password1" class="form-control" placeholder="Password" type="password">
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group// -->
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-unlock-alt"></i> </span>
+         </div>
+        <input name="pwd2" id="password2" class="form-control" placeholder="Password Again" type="password">
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group// -->
+    <span id="pwmatch" style="display: none">Password need to be the same!</span>
+    <div class="form-group">
+    <input id="btn-signup" type="submit" class="sign-up-btn btn btn-primary btn-block" style="background-color: #1695A3;" value="Sign Up Now">
+    </div> <!-- form-group// -->
+    <p class="text-center"><a href="/login" class="btn">Already a member? Click here</a></p>
+    </form>
+
+
+</article>
+</div> <!-- card.// -->
+</section> <!-- col.// -->
+    
+</body>
+
+</html>
+<script>
+
+
+$("input[type=password]").keyup(function() {
+            if ($("#password1").val() != "" || $("#password2").val() != "") {
+                if ($("#password1").val() == $("#password2").val()) {
+
+                    $("#pwmatch").css("display", "none");
+                    $("#btn-signup").attr('disabled', false);
+
+                } else {
+                    $("#pwmatch").css("display", "block");
+                    $("#btn-signup").attr('disabled', 'disabled');
+                }
+            }
+        });
+</script>

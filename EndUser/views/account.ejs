@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Account</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Header Part Start -->
+    <header class='header-area'>
+        <!-- header-top -->
+        <div class='header-top'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        <div class='header-top-item d-block d-md-flex justify-content-between align-items-center'>
+                            <div class='header-contact'>
+                                <ul>
+                                    <li><a href='tel:+125123658'>Call us: CS631-631-631</a></li>
+                                    <li><a href='mailto:XXX'>Email: dz9@njit.edu</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-main-->
+        <div class='main-header'>
+            <div class='container'>
+                <div class='row align-items-center'>
+                    <div class='col-lg-2 col-md-3'>
+                        <div class='logo'>
+                            <a href='/'><img src='/images/NFClogo.png' height=90px alt='logo'></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-menu(navi&cart&account) -->
+        <div class='header-menu'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        <div class='navigation'>
+                            <nav class='navbar navbar-expand-lg navbar-light '>
+                                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                </button> <!-- navbar toggler -->
+                                <div class='collapse navbar-collapse sub-menu-bar' id='navbarSupportedContent'>
+                                    <ul class='navbar-nav mr-auto'>
+                                        <li class='nav-item active'><a class='nav-link' href='/'>Home</a></li>
+                                        <li class='nav-item'>
+                                            <div class="dropdown" style="margin-left: 20px;">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account</a>
+                                                <div class="dropdown-menu" style="background-color: #215378;">
+                                                    <ul style="color: white;font-size: 6px;">User:
+                                                        <span id="userID">
+                                                            <%=userID%></span>
+                                                    </ul>
+                                                    <a class="dropdown-item" href="/account">Profile & Order</a>
+                                                    <a class="dropdown-item" href="/logout">Log Out</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class='nav-item'>
+                                            <a class='nav-link' href='/about'>About</a>
+                                        </li>
+                                    </ul>
+                                </div> <!-- navbar collapse -->
+                                <div class='navbar-btn d-flex'>
+                                    <ul>
+                                        <li><a href='/cart'><i class='fa fa-shopping-cart'></i>Cart</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div> <!-- navigation -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Part End-->
+    <br><br>
+    <h3 class="text-center" style="color: #215378">Profile & Orders</h3>
+    <br><br>
+    <div class="page-wrapper pt-50">
+        <div class="container-fluid">
+            <!-- Row -->
+            <div class="row">
+                <!-- Column -->
+                <div class="col-lg-3 col-xlg-4 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            
+
+                                <% PROFILE.forEach((itemm) => { %>
+                                <form action="/update/<%=itemm.person_id%>" class="form-horizontal form-material" method="post">
+                                <div class="form-group">
+                                    <label class="col-md-12">Full Name</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Emo Zhang" name="name" class="form-control form-control-line" value="<%=itemm.name%>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Email</label>
+                                    <div class="col-md-12">
+                                        <input type="email" placeholder="Emozhang@admin.com" class="form-control form-control-line" name="email" id="example-email" value="<%=itemm.mail%>">
+                                    </div>
+                                </div>
+                                <div class="form-group pt-10">
+                                    <div class="col-sm-12">
+                                        <input type="submit" class="btn btn-success" value="Update Profile">
+                                    </div>
+                                </div>
+                                <% }) %>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
+                <!-- Column -->
+                <div class="col-lg-9 col-xlg-8 col-md-7">
+                    <div id="accordion">
+                        <% ORDERS.forEach((item) => { %>
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapse">
+                                    Order Number: <span>
+                                        <%= item.order_id %></span>
+                                </a>
+                            </div>
+                            <div id="collapse" class="collapse show" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="orderInfo" style="font-size: 12px;">
+                                        <span class="order_time">Time:
+                                            <%=item.time%></span><br>
+                                        <span class="order_total">Total: $
+                                            <%=item.fee%> | </span>
+                                        <span class="order_total">Payment: PAYPAL | </span>
+                                        <span class="order_status">Status:
+                                            <%=item.order_status%> | </span>
+                                        <span class="order_status">Address:
+                                            <%=item.address%> </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+
+                </div>
+                <!-- Column -->
+            </div>
+            <!-- Row -->
+        </div>
+</body>
+
+</html>
+<script>
+// $(document).ready(function() { //打开页面之后立刻就执行的函数
+
+//     var user = $('#userID').text(); //获取本页面的用户邮箱
+
+//     $.ajax({
+
+//         type: 'post',
+//         url: '/historyOrder', //后端通过这个url来识别这次ajax
+//         dataType: 'json',
+//         data: { userMail: user },
+//         success: function(data) {
+//             if (data.code > 0) { //如果后端传来的datacode大于0,说明添加订单成功
+//                 console.log("account ok");
+
+//             } else {
+//                 alert("Submit faided!!!!");
+//             }
+//         },
+//         error: function(error) {
+//             console.log(error)
+//         }
+//     })
+
+
+
+// })
+</script>

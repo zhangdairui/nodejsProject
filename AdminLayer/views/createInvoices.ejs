@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Create Invoices</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Header Part Start -->
+    <header class='header-area'>
+       <%- include("header.ejs")%>
+    </header>
+    <nav class="breadcrumb">
+  <a class="breadcrumb-item" href="/">Home</a>
+  <a class="breadcrumb-item" href="/customerInfo">Customer Management</a>
+  <span class="breadcrumb-item active">Create Invoices</span>
+</nav>
+    <!-- Header Part End-->
+
+<!-- Users table -->
+     
+            <div class="container pb-4">
+             <br><br>
+            <h3>Create Invoices</h3>
+            <p>NOTICE: You are creating new invoices for: </p>
+            <span>Customer ID: <span style="color: #de7e00;"><%=customerItem.person_id%></span></span><br>
+            <span>Customer Name: <span style="color: #de7e00;"><%=customerItem.name%></span></span>
+            
+            
+            <br><br>
+            <form action="/createInvoices" method="post">
+
+
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text">Seller ID</span>
+                    </div>
+                    <input type="text" class="form-control col-lg-5" name="sellerID" value="<%=customerItem.person_id%>" readonly="readonly">
+                </div>
+
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text">Employee ID</span>
+                    </div>
+                    <input type="text" class="form-control col-lg-5" name="employeeID" value="<%=adminInfo.person_id%>" readonly="readonly">
+                  
+                    </div>
+
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text">Balance Now</span>
+                    </div>
+                    <input type="text" class="form-control col-lg-5" name="historybalance" value="<%=customerItem.balance%>" readonly="readonly">
+                  
+                    </div>
+
+
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text">Amount</span>
+                    </div>
+                    <input type="text" class="form-control col-lg-2" name="money" pattern="^([1-9][0-9]*)$">
+                    <p class="ml-3">* The amount of money must be an integer.</p> 
+                    </div>
+
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text">Description</span>
+                    </div>
+                    <input type="text" class="form-control col-lg-5" name="description" >
+                    </div>
+
+                    <br><br>
+                    <input type="submit" class="btn btn-info" value="Send Invoice">
+
+                </form>
+
+                </div>
+       
+
+                <!-- end users table -->
+
+    
+</body>
+
+</html>

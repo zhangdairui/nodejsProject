@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Inventory Management</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Header Part Start -->
+    <header class='header-area'>
+        <%- include("header.ejs")%> 
+    </header>
+    <nav class="breadcrumb">
+  <a class="breadcrumb-item" href="/">Home</a>
+  <span class="breadcrumb-item active">Inventory Management</span>
+</nav>
+    <!-- Header Part End-->
+<br><br>
+<!-- Users table -->
+        <section>
+            <div class="container">
+                <form role="form" action="/searchInventory" method="post">
+                    <label for="name">Show inventory: </label>
+                    <div class="input-group">
+                
+                    <select class="form-control col-lg-2" name="inventoryStatus">
+                    <option value="prestore">prestore</option>
+                    <option value="store">store</option>
+                    <option value="sell">sell</option>
+                    <option value="sold">sold</option>
+                    </select>
+                    <input type="submit" value="Show" class="btn btn-primary" style="background-color: #FF8E47;border-color:#FF8E47;margin-left: 10px;">
+                    </div>
+                </form>
+        <br><br>
+        <div>
+             <a href="/inventory" style="color: #215378;text-decoration: underline;padding-bottom: 10px; font-size: 12px;">Click Here To Display All</a>
+                    </div>
+                <div class="row-fluid table employee-list text-center">
+                    <table class="table table-hover">
+
+                        <thead class="table-light" style="color: #de7e00;">
+                            <tr>
+                                <th class="span4 sortable">
+                                    ID
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>Name
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>Type
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Status
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Length
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Width
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Height
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Weight
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Price
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Warehouse
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Seller
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Operate
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody >
+                        <!-- row -->
+                        <% INVENTORY.forEach((item) => { %>
+                        <tr class="first">
+
+                            <td>
+                                <span class="subtext"><%= item.id%></span>
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.name%></span>
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.type%></span>
+                            </td>
+                            <td class="align-right">
+                                <span class="subtext"><%= item.status%></span>
+                            </td>
+
+                            <td>
+                                <span class="subtext"><%= item.length%></span>
+                                
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.width%></span>
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.height%></span>
+                            </td>
+                            <td class="align-right">
+                                <span class="subtext"><%= item.weight%></span>
+
+                            </td>
+
+                            <td>
+                                <span class="subtext"><%= item.price%></span>
+                                
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.warehouse_id%></span>
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.SellerName %></span>
+                            </td>
+                             <td>
+                                    <form action="/editInventory/<%=item.id%>">
+                                        <input type="submit" value="Edit" class="btn btn-info">
+                                    </form>
+                             </td>
+                           
+                        </tr>
+                        <!-- row -->
+                        <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </section>
+
+                <!-- end users table -->
+
+    
+</body>
+
+</html>

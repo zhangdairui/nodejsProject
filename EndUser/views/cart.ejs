@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cart</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+    <!-- Header Part Start -->
+    <header class='header-area'>
+        <!-- header-top -->
+        <div class='header-top'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        <div class='header-top-item d-block d-md-flex justify-content-between align-items-center'>
+                            <div class='header-contact'>
+                                <ul>
+                                    <li><a href='tel:+125123658'>Call us: CS631-631-631</a></li>
+                                    <li><a href='mailto:XXX'>Email: dz9@njit.edu</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-main-->
+        <div class='main-header'>
+            <div class='container'>
+                <div class='row align-items-center'>
+                    <div class='col-lg-2 col-md-3'>
+                        <div class='logo'>
+                            <a href='/'><img src='/images/NFClogo.png' height=90px alt='logo'></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-menu(navi&cart&account) -->
+        <div class='header-menu'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        <div class='navigation'>
+                            <nav class='navbar navbar-expand-lg navbar-light '>
+                                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                </button> <!-- navbar toggler -->
+                                <div class='collapse navbar-collapse sub-menu-bar' id='navbarSupportedContent'>
+                                    <ul class='navbar-nav mr-auto'>
+                                        <li class='nav-item active'><a class='nav-link' href='/'>Home</a></li>
+                                        <li class='nav-item'>
+                                            <div class="dropdown" style="margin-left: 20px;">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account</a>
+                                                <div class="dropdown-menu" style="background-color: #215378;">
+                                                    <ul style="color: white;font-size: 6px;">User:
+                                                        <span id="userID"><%=userID%></span>
+                                                    </ul>
+                                                    <a class="dropdown-item" href="/account">Profile & Order</a>
+                                                    <a class="dropdown-item" href="/logout">Log Out</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class='nav-item'>
+                                            <a class='nav-link' href='/about'>About</a>
+                                        </li>
+                                    </ul>
+                                </div> <!-- navbar collapse -->
+                                <div class='navbar-btn d-flex'>
+                                    <ul>
+                                        <li><a href='/cart'><i class='fa fa-shopping-cart'></i>Cart</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div> <!-- navigation -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header Part End-->
+
+    <section class="cart-content-block container">
+            <div class="row">
+                    <div class="col-12"> 
+                          <h2 style="color: #215378;">Your Cart</h2>
+                          <br><br>
+                        <div class="table-responsive">
+                            <table class="table cart-data-table" id="cartProductInfo">
+                                <thead>
+                                    <tr>
+                                        <th class="id text-center">Product ID</th>
+                                        <th class="Product text-center">Products</th>
+                                        <th class="price text-center">Price</th>
+                                        <th class="Delete text-center">Delete</th>
+                                    </tr>
+                                </thead>
+
+
+                                  <tbody>
+
+                                    <% CART_PRODUCTS.forEach((item) => { %>
+                                <!-- 这里的USER接住了app.js传来的被定义成USER的results，item是新定义的 -->
+                                <tr>
+                                    <td class="id-column text-center"><%= item.id %></td>
+                                    <td class="name-column text-center"><%= item.productName %></td>
+                                    <td class="price-column text-center"><%= item.price%></td>
+                                    <td class="remove text-center">
+                                        <a href="#" class="remove"><i class="fa fa-trash fa-lg" style="color: #215378;" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    
+                                  </tbody>
+
+
+                                </table>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="row">
+                    <div class="col-xs-12">
+                        <div class="table-wrap">
+                            <h2>Cart Total</h2>
+                            <ul class="list-unstyled cart-total">
+                                <li>
+                                    <strong class="subTotal-title pull-left">Sub-Total:</strong>
+                                    <strong class="subTotal-price pull-right">$<span class="cart-subtotal">0
+                                        </span></strong>
+                                </li>
+                          
+                                 <li>
+                                    <strong class="Total-title pull-left">Total:</strong>
+                                    <strong class="Total-price pull-right">$<span class="cart-all-total">0</span></strong>
+                                    <span class="shipping-fee">Shipping:$<span class="shipping-fee-value">15</span></span>
+                                </li>
+                            </ul>
+                            <button class="btn-primary text-center text-uppercase" id="createOrder">proceed to checkout </button>
+                        </div>
+                    </div>
+                </div>
+</section>
+
+</body>
+
+</html>
+
+<script>
+
+//删除功能后端实现，购物车内的计算由前端实现
+//------------------------下面开始前端计算------------------------//
+
+var shipping = 15.00;
+var fadeTime = 300;
+
+$(document).ready(function(){ //打开页面之后立刻执行的函数
+
+    recalculateCart(); //这个函数在下面定义的，用来计算total
+
+
+
+})
+
+
+// Recalculate cart 
+function recalculateCart() {  //计算用函数
+    var subtotal = 0;
+
+    /* Sum up row totals */
+    $('.price-column').each(function() {
+        subtotal += parseFloat($(this).text());
+    });
+
+    /* Calculate totals */
+    var total = subtotal + shipping;
+
+    /* Update totals display */
+    $('.price-column').fadeOut(fadeTime, function() {
+        $('.cart-subtotal').html(subtotal.toFixed(2));
+
+        $('.cart-all-total').html(total.toFixed(2));
+
+        $('.price-column').fadeIn();
+
+    });
+}
+
+
+
+//------------------------删除功能发送ajax给后端------------------------//
+
+ $('.remove').click(function() { //当按下删除按钮的时候，启动下面的js
+
+
+        var user = $('#userID').text(); //获取本页面的用户邮箱
+        var product_id = $(this).parent().parent().children('.id-column').text(); //获取点击商品的id
+        var DeleteProduct = { userMail: user, product_id: product_id } //把这个数组传给后端
+        
+      
+        $.ajax({ //只有满足了才能开始ajax，向后端post上面定义好的logindata，并且指定这个ajax的url是/login
+
+            type: 'post',
+            url: '/remove', //后端通过这个url来识别这次ajax
+            dataType: 'json',
+            data: DeleteProduct, //里面有两个东西，userMail和product_id
+            success: function(data) {
+                if (data.code > 0) { //如果后端传来的datacode大于0,说明删除成功
+                    location.reload();; //刷新购物车页面
+                } 
+                else{
+                    alert("Remove faided!!!!");
+                } 
+            },
+            error: function(error) {
+                console.log(error)
+            }
+        })
+    })
+
+$('#createOrder').click(function(){
+    if($('.cart-all-total').text() == 0){  //如果购物车总价为0，说明没有商品
+        alert("Your cart is empty!");
+    }else{
+        $(location).attr("href","/createOrder"); //如果有商品，再跳转至下一页
+    }
+
+
+})
+
+</script>

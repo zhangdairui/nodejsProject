@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Warehouse Management</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Header Part Start -->
+    <header class='header-area'>
+        <%- include("header.ejs")%> 
+    </header>
+    <nav class="breadcrumb">
+  <a class="breadcrumb-item" href="/">Home</a>
+  <a class="breadcrumb-item" href="/warehouseInfo">Warehouse Management</a>
+  <span class="breadcrumb-item active">Locations of Warehouse</span>
+</nav>
+    <!-- Header Part End-->
+<br><br>
+<!-- Users table -->
+        <div class="container">
+            <h3>Warehouse: <span><%=warehouseName.warehouse_name%></span></h3>
+            <br><br>
+            <div class="row-fluid table employee-list text-center">
+                    <table class="table table-hover">
+
+                        <thead class="table-light" style="color: #de7e00;">
+                            <tr>
+                                <th class="span4 sortable">
+                                    ID
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>Inventory
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>room_number
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>shelf_number
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Length
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Width
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Height
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Operate
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody >
+                        <!-- row -->
+                        <% locationItem.forEach((item) => { %>
+                        <tr class="first">
+
+                            <td>
+                                <span class="subtext"><%= item.id%></span>
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.inventory_id%></span>
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.room_number%></span>
+                            </td>
+                            <td class="align-right">
+                                <span class="subtext"><%= item.shelf_number%></span>
+                            </td>
+
+                            <td>
+                                <span class="subtext"><%= item.length%></span>
+                                
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.width%></span>
+                            </td>
+                            <td>
+                                <span class="subtext"><%= item.height%></span>
+                            </td>
+                            
+                             <td>
+                                    <form action="/editLocation/<%=item.id%>">
+                                        <input type="submit" value="Edit" class="btn btn-info">
+                                    </form>
+                             </td>
+                           
+                        </tr>
+                        <!-- row -->
+                        <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            
+
+        </div>
+    
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Customer Order Details</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Header Part Start -->
+    <header class='header-area'>
+        <%- include("header.ejs")%> 
+    </header>
+    <nav class="breadcrumb">
+  <a class="breadcrumb-item" href="/">Home</a>
+<!--   <a class="breadcrumb-item" href="#">Library</a> -->
+  <a class="breadcrumb-item" href="/orderCustomer">Customer Order</a>
+  <span class="breadcrumb-item active">Customer Order Details</span>
+</nav>
+    <!-- Header Part End-->
+<br><br>
+<!-- Users table -->
+        <div class="container">
+            <h3>Order ID: <span id="orderID"><%=orderID%></span></h3>
+            <br><br>
+            <h4>Order Status: <span style="color: #de7e00;" id="orderStat"><%=orderStatus%></span></h4>
+            <p id="words">When stored all the inventory, you can refresh this order's status by the button blow</p>
+            <button class="btn btn-info mt-3" id="refreshStatus">Refresh Status</button>
+            <br><br>
+            <span>Now manager: <span><%=orderManager%></span></span>
+            <form action="/changeManager/<%=orderID%>" method="post">
+                <label>Select Manager: </label>
+                    <div class="input-group">
+                
+                    <select class="form-control col-lg-4" name="orderManager" required="required">
+                    <% allManager.forEach((item) => { %>            
+                    <option value="<%=item.person_id%>"><%=item.name%></option>
+                    <% }) %>
+                    </select>
+                    <input class="btn btn-info ml-2" type="submit" value="Change Manager">
+                    </div>
+            </form>
+            <br><br>
+            <h5>Inventory List:</h5>
+            <div class="row-fluid table employee-list text-center">
+                    <table class="table table-hover">
+
+                        <thead class="table-light" style="color: #de7e00;">
+                            <tr>
+                                <th class="span4 sortable">
+                                    ID
+                                </th>
+
+                                <th class="span3 sortable">
+                                    <span class="line">Inventory_name</span>
+                                </th>
+
+                                <th class="span2 sortable">
+                                    <span class="line">price</span>
+                                </th>
+
+                                <th class="span3 sortable align-right">
+                                    <span class="line">Length</span>
+                                </th>
+
+                                <th class="span3 sortable align-right">
+                                    <span class="line">Width</span>
+                                </th>
+
+                                <th class="span3 sortable align-right">
+                                    <span class="line">Height</span>
+                                </th>
+
+                                <th class="span3 sortable align-right">
+                                    <span class="line">Weight</span>
+                                </th>
+
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Status
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody >
+                        <!-- row -->
+                        <% orderItem.forEach((item) => { %>
+                        <tr class="first">
+
+                            <td>
+                                <span class="inventoryID"><%= item.id%></span>
+                            </td>
+                            <td>
+                                <span class="inventoryName"><%= item.name%></span>
+                            </td>
+                            <td>
+                                <span class="inventoryPrice"><%= item.price%></span>
+                            </td>
+
+                            <td>
+                                <span class="inventoryLength"><%= item.length%></span>
+                                
+                            </td>
+                            <td>
+                                <span class="inventoryWidth"><%= item.width%></span>
+                            </td>
+                            <td>
+                                <span class="inventoryHeight"><%= item.height%></span>
+                            </td>
+                             <td>
+                                <span class="inventoryWeight"><%= item.weight%></span>
+                            </td>
+                             <td>
+                             		<span class="inventoryStatus" style="display: none;"><%= item.status%></span>
+                                    <button class="btn btn-info storeBTN" id="storeBTN">Store</button>
+                             </td>
+                           
+                        </tr>
+                        <!-- row -->
+                        <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            
+
+        </div>
+    
+</body>
+
+</html>
+<script>
+	$(document).ready(function(){ //打开页面之后立刻执行的函数
+	
+    $('.inventoryStatus').each(function() {  //只显示状态为prestore的inventory的按钮
+        if ($(this).text() == "store"){
+        	$(this).parent().children('.btn').attr("disabled","true");
+        	$(this).parent().children('.btn').text("Already Stored");
+        }
+    });
+    if ($('#orderStat').text() == "order_completed"){
+    	$('#words').attr("style","display:none;");
+    	$('#refreshStatus').attr("style","display:none;");
+    }
+
+})
+
+//------------------------Store按钮发送ajax给后端------------------------//
+$('#storeBTN').click(function() {
+
+    var inventoryID = $(this).parent().parent().find('.inventoryID').text();
+    var inventoryLength = $(this).parent().parent().find('.inventoryLength').text();
+    var inventoryHeight = $(this).parent().parent().find('.inventoryHeight').text();
+    var inventoryWidth = $(this).parent().parent().find('.inventoryWidth').text();
+
+    $.ajax({ 
+            type: 'post',
+            url: '/storeInventory', //后端通过这个url来识别这次ajax
+            dataType: 'json',
+            data: { inventoryID: inventoryID, inventoryLength: inventoryLength, inventoryHeight: inventoryHeight, inventoryWidth: inventoryWidth},
+
+            // traditional:true
+            success: function(data) {
+                if (data.code > 0) { //如果后端传来的datacode大于0,说明放入location成功
+                    alert("Store Succeed" );
+                    location.reload();
+                } 
+                else{
+                    alert("Store faided!!!!");
+                } 
+            },
+            error: function(error) {
+                console.log(error)
+            }
+
+    })
+});
+
+//------------------------刷新状态按钮发送ajax给后端------------------------//
+$('#refreshStatus').click(function() {
+
+    var orderID = $('#orderID').text();
+
+    $.ajax({ 
+            type: 'post',
+            url: '/refreshStatus', //后端通过这个url来识别这次ajax
+            dataType: 'json',
+            data: { orderID: orderID},
+
+            // traditional:true
+            success: function(data) {
+                if (data.code > 0) { //如果后端传来的datacode大于0,说明放入location成功
+                    alert("Refresh Succeed" );
+                    location.reload();
+                } 
+                else{
+                    alert("Refresh faided!!!!");
+                } 
+            },
+            error: function(error) {
+                console.log(error)
+            }
+
+    })
+});
+
+
+</script>

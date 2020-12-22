@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>About</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Header Part Start -->
+    <header class='header-area'>
+        <!-- header-top -->
+        <div class='header-top'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        <div class='header-top-item d-block d-md-flex justify-content-between align-items-center'>
+                            <div class='header-contact'>
+                                <ul>
+                                    <li><a href='tel:+125123658'>Call us: CS631-631-631</a></li>
+                                    <li><a href='mailto:XXX'>Email: dz9@njit.edu</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-main-->
+        <div class='main-header'>
+            <div class='container'>
+                <div class='row align-items-center'>
+                    <div class='col-lg-2 col-md-3'>
+                        <div class='logo'>
+                            <a href='/'><img src='/images/NFClogo.png' height=90px alt='logo'></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-menu(navi&cart&account) -->
+        <div class='header-menu'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        <div class='navigation'>
+                            <nav class='navbar navbar-expand-lg navbar-light '>
+                                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                </button> <!-- navbar toggler -->
+                                <div class='collapse navbar-collapse sub-menu-bar' id='navbarSupportedContent'>
+                                    <ul class='navbar-nav mr-auto'>
+                                        <li class='nav-item active'><a class='nav-link' href='/'>Home</a></li>
+                                        <li class='nav-item'>
+                                            <div class="dropdown" style="margin-left: 20px;">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account</a>
+                                                <div class="dropdown-menu" style="background-color: #215378;">
+                                                    <ul style="color: white;font-size: 6px;">User:
+                                                        <%=userID%>
+                                                    </ul>
+                                                    <a class="dropdown-item" href="/account">Profile & Order</a>
+                                                    <a class="dropdown-item" href="/logout">Log Out</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class='nav-item'>
+                                            <a class='nav-link' href='/about'>About</a>
+                                        </li>
+                                    </ul>
+                                </div> <!-- navbar collapse -->
+                                <div class='navbar-btn d-flex'>
+                                    <ul>
+                                        <li><a href='/cart'><i class='fa fa-shopping-cart'></i>Cart</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div> <!-- navigation -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header Part End-->
+    <br><br>
+    <section class="about-store-area pt-70 pb-65">
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-lg-6">
+                    <div class="about-store-content">
+                        <h3 class="title">Welcome to NFC shopping!</h3>
+                        <p>Newark Fulfillment Centers is a series of warehouses that services local small businesses who do not possess suitable space to hold / host their inventory. Just like Amazon Fulfillment Services, small businesses will send inventory directly to NFC to store, process and fulfill orders on behalf of these businesses. The types of businesses t hat it serves expands the spectrum from health and well being to medical supplies such as PPE all the way to dog / pet grooming and clothing. NFC i s a self-contained system that no outsiders are allowed into the facilities, and everything needs to be checked-in and checked-out through ownership accounts.</p>
+                    </div>
+                    <div class="store-item mt-40">
+                        <img src="images/icon/icon-5.png" alt="">
+                        <h4 class="title">Modern Equipments</h4>
+                        <p>As demand varies seasonally, you will need to manage the different types of workers you
+                            employ. You will have management of the facility, regular employees, information technology to
+                            manage your infrastructure, the bare minimum warehouse employees to handle the receipt of
+                            inventory, fulfillment of orders for your small business customers, as contractual or seasonal
+                            employees when demand is highest. Your accounting department requires access to your
+                            systems to manage receivables and payables. The data in your system will be used to decide
+                            whether there is a future need to expand your facilities or to search for additional warehouse
+                            space.</p>
+                    </div>
+                    <div class="store-item mt-40">
+                        <img src="images/icon/icon-6.png" alt="">
+                        <h4 class="title">Modern Equipments</h4>
+                        <p>Every small business customer has negotiated rates. Rates will cover warehouse storage,
+                            fulfillment costs based on daily or monthly volume, as well as disposal or fire sale of items
+                            selling leftover or unneeded items to you at an extreme discount. You will maintain a separate
+                            inventory selling to similar customers at an extreme profit. You will need to create a view that
+                            shows rates, how much volume sold, with fees debited based off the negotiated rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

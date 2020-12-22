@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Header Part Start -->
+    <header class='header-area'>
+        
+        <!-- header-main-->
+        <div class='main-header'>
+            <div class='container'>
+                <div class='row align-items-center'>
+                    <div class='col-lg-2 col-md-3'>
+                        <div class='logo'>
+                            <a href='/'><img src='/images/NFClogo.png' height=90px alt='logo'></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- header-menu(navi&cart&account) -->
+        <div class='header-menu'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        <div class='navigation'>
+                            <nav class='navbar navbar-expand-lg navbar-light '>
+                                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                </button> <!-- navbar toggler -->
+                                <div class='collapse navbar-collapse sub-menu-bar' id='navbarSupportedContent'>
+                                    <ul class='navbar-nav mr-auto'>
+
+                                        
+
+                                        <li class='nav-item'>
+                                            <div class="dropdown" style="margin-left: 20px;">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer</a>
+                                                <div class="dropdown-menu" style="background-color: #de7e00;">
+                                                    <a class="dropdown-item" href="" id="">Creare New</a>
+                                                    <a class="dropdown-item" href="">Customer Operation</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                      <li class='nav-item active'><a class='nav-link' href='/'>Inventory</a></li>
+
+                                        <li class='nav-item'>
+                                            <div class="dropdown" style="margin-left: 20px;">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Order</a>
+                                                <div class="dropdown-menu" style="background-color: #de7e00;">
+                                                    <a class="dropdown-item" href="" id="">Orders for Cutomers</a>
+                                                    <a class="dropdown-item" href="">Orders for Endusers</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li class='nav-item active'><a class='nav-link' href='/'>Warehouse</a></li>
+
+
+                                        <li class='nav-item active'><a class='nav-link' href='/'>Employee</a></li>
+
+
+
+                                    </ul>
+                                </div> <!-- navbar collapse -->
+                                <!-- <div class='navbar-btn d-flex'>
+                                    <ul>
+                                        <li><a href=''>
+                                            <i class='fa fa-user'></i><span>Manager: </span><span>xiaoming</span></a></li>
+                                        <li style="border: none; text-decoration: underline;"><a href="">LOG OUT</a></li>
+                                    </ul>
+                                </div> -->
+                            </nav>
+                        </div> <!-- navigation -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Part End-->
+<br><br>
+
+<section class="col-sm-4 m-auto pt-50">
+        
+<div class="card">
+<article class="card-body">
+    <h4 class="card-title text-center mb-4 mt-1">Sign Up</h4>
+   
+    <form action="/signup" method="post">
+
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+         </div>
+        <input name="user" class="form-control" placeholder="Email Address" type="email">
+    </div> <!-- input-group.// -->
+
+    </div> <!-- form-group// -->
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-unlock-alt"></i> </span>
+         </div>
+        <input name="pwd1" id="password1" class="form-control" placeholder="Password" type="password">
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group// -->
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-unlock-alt"></i> </span>
+         </div>
+        <input name="pwd2" id="password2" class="form-control" placeholder="Password Again" type="password">
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group// -->
+    <span id="pwmatch" style="display: none">Password need to be the same!</span>
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+         </div>
+        <input name="adminName" class="form-control" placeholder="Full name" type="text">
+    </div> <!-- input-group.// -->
+
+    </div> 
+     <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-users"></i> </span>
+         </div>
+        <input name="position" class="form-control" placeholder="position" type="text">
+    </div> <!-- input-group.// -->
+
+    </div> 
+    <div class="form-group">
+    <input id="btn-signup" type="submit" class="sign-up-btn btn btn-primary btn-block" style="background-color: #1695A3;" value="Sign Up Now">
+    </div> <!-- form-group// -->
+    <p class="text-center"><a href="/login" class="btn">Already registered? Click here</a></p>
+    </form>
+
+
+</article>
+</div> <!-- card.// -->
+</section> <!-- col.// -->
+    
+</body>
+
+</html>
+<script>
+
+
+$("input[type=password]").keyup(function() {
+            if ($("#password1").val() != "" || $("#password2").val() != "") {
+                if ($("#password1").val() == $("#password2").val()) {
+
+                    $("#pwmatch").css("display", "none");
+                    $("#btn-signup").attr('disabled', false);
+
+                } else {
+                    $("#pwmatch").css("display", "block");
+                    $("#btn-signup").attr('disabled', 'disabled');
+                }
+            }
+        });
+</script>

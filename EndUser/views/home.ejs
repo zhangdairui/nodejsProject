@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Header Part Start -->
+    <header class='header-area'>
+        <!-- header-top -->
+        <div class='header-top'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        <div class='header-top-item d-block d-md-flex justify-content-between align-items-center'>
+                            <div class='header-contact'>
+                                <ul>
+                                    <li><a href='tel:+125123658'>Call us: CS631-631-631</a></li>
+                                    <li><a href='mailto:XXX'>Email: dz9@njit.edu</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-main-->
+        <div class='main-header'>
+            <div class='container'>
+                <div class='row align-items-center'>
+                    <div class='col-lg-2 col-md-3'>
+                        <div class='logo'>
+                            <a href='/'><img src='/images/NFClogo.png' height=90px alt='logo'></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-menu(navi&cart&account) -->
+        <div class='header-menu'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        <div class='navigation'>
+                            <nav class='navbar navbar-expand-lg navbar-light '>
+                                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                    <span class='toggler-icon'></span>
+                                </button> <!-- navbar toggler -->
+                                <div class='collapse navbar-collapse sub-menu-bar' id='navbarSupportedContent'>
+                                    <ul class='navbar-nav mr-auto'>
+                                        <li class='nav-item active'><a class='nav-link' href='/'>Home</a></li>
+                                        <li class='nav-item'>
+                                            <div class="dropdown" style="margin-left: 20px;">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account</a>
+                                                <div class="dropdown-menu" style="background-color: #215378;">
+                                                    <ul style="color: white;font-size: 6px;">User:
+                                                        <span id="userID"><%=userID%></span>
+                                                    </ul>
+                                                    <a class="dropdown-item" href="/account" id="proflieNavi">Profile & Order</a>
+                                                    <a class="dropdown-item" href="/logout">Log Out</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class='nav-item'>
+                                            <a class='nav-link' href='/about'>About</a>
+                                        </li>
+                                    </ul>
+                                </div> <!-- navbar collapse -->
+                                <div class='navbar-btn d-flex'>
+                                    <ul>
+                                        <li><a href='/cart'><i class='fa fa-shopping-cart'></i>Cart</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div> <!-- navigation -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Part End-->
+    <section class="search-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <br><br>
+                    <h4 style="color: #215378;">Search</h4>
+                    <p style="color: #215378;">You can search product blow.</p>
+                    <br><br>
+                    <form action="/search" method="post">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="searchProductName" placeholder="Product Name Here">
+                            <span class="input-group-btn">
+                                <input type="submit" value="Search" class="btn btn-primary" style="background-color: #FF8E47;border-color:#FF8E47 ">
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Search Part End-->
+    <br><br>
+    <section class="product-list">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <a href="/" style="color: #215378;text-decoration: underline;padding-bottom: 10px; font-size: 12px;">Click Here To Display All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table cart-data-table" id="cartProductInfo">
+                            <thead>
+                                <tr>
+                                    <th class="ProductID text-center">Product ID</th>
+                                    <th class="Product text-center">Product</th>
+                                    <th class="price text-center">Price</th>
+                                    <th class="Quantity text-center">Seller</th>
+                                    <th class="Total text-center">Add</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% PRODUCTS.forEach((item) => { %>
+                                <!-- 这里的USER接住了app.js传来的被定义成USER的results，item是新定义的 -->
+                                <tr>
+                                    <td class="id-column text-center"><%= item.id %></td>
+                                    <td class="name-column text-center"><%= item.productName %></td>
+                                    <td class="price-column text-center"><%= item.price%></td>
+                                    <td class="seller-column text-center"> <%=item.SellerName%></td>
+                                    <td class="delete-column text-center">
+                                        <input type="submit" class="btn-add btn btn-info"  value="Add to cart">
+                                    </td>
+                                </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+<script>
+//-----------------------AJAX for add Cart----------------------------------
+$(function() {
+    $('.btn-add').click(function() { //当按下登录按钮的时候，启动下面的js
+        var user = $('#userID').text(); //获取本页面的用户邮箱
+
+        var product_id = $(this).parent().parent().children('.id-column').text(); //获取点击商品的id
+        var cartProduct = { userMail: user, product_id: product_id }
+      
+        $.ajax({ //只有满足了才能开始ajax，向后端post上面定义好的logindata，并且指定这个ajax的url是/login
+
+            type: 'post',
+            url: '/add', //后端通过这个url来识别这次ajax
+            dataType: 'json',
+            data: cartProduct,
+            success: function(data) {
+                if (data.code > 0) { //如果后端传来的datacode大于0,说明添加成功
+                    alert("Add Succeed！"); //弹出对话框
+                } else if(data.code==0){
+                	alert("This Product is Already In Cart!")
+                }else{
+                    alert("Add faided!!!!");
+                } 
+            },
+            error: function(error) {
+                console.log(error)
+            }
+        })
+
+    })
+    // $('#proflieNavi').click(function() {
+    //     var user = $('#userID').text(); //获取本页面的用户邮箱
+    //     var toAccount = { userMail: user}
+    //     $.ajax({ //
+
+    //         type: 'post',
+    //         url: '/account', //后端通过这个url来识别这次ajax
+    //         dataType: 'json',
+    //         data: toAccount,
+    //         success: function(data) {
+    //         console.log(user);
+    //         },
+    //         error: function(error) {
+    //             console.log(error)
+    //         }
+    //     })
+
+    // })
+        
+    });
+
+
+</script>

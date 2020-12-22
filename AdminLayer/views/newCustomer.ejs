@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>New Customer</title>
+    <!-- ======================JS引入================================== -->
+    <!-- jQuery必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- ======================CSS引入================================== -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <%- include("header.ejs")%>
+    </header>
+    <nav class="breadcrumb">
+  <a class="breadcrumb-item" href="/">Home</a>
+  <!-- <a class="breadcrumb-item" href="#">Library</a>
+  <a class="breadcrumb-item" href="#">Data</a> -->
+  <span class="breadcrumb-item active">Create New</span>
+</nav>
+    <!-- Header Part End-->
+<br><br>
+<!-- Users table -->
+        <section>
+            <div class="container mb-3">
+
+            <br><br>
+            <h3>Create New Customer</h3>
+            <p>You can create a new account for your customer here. </p>
+            <p>Please make sure that you have obtained the customer's business information before filling in the following information</p>
+            
+            <br><br>
+            <form action="/createCustomer" method="post">
+
+
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text">Full Name</span>
+                    </div>
+                    <input type="text" class="form-control col-lg-4"name="customerName">
+                  
+                    </div>
+                    <label for="name">Type: </label>
+                    <div class="input-group">
+                
+                    <select class="form-control col-lg-4" name="customerType" required="required">
+                    <option value="">Select customer type</option>
+                    <option value="loyal customer">loyal customer</option>
+                    <option value="licensed customer">licensed customer</option>
+                    </select>
+                    </div>
+                    <br><br>
+
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text">Password</span>
+                    </div>
+                    <input type="password" class="form-control col-lg-2" name="customerPwd" value="123" disabled="disabled">
+                    <p class="ml-3">*The default initial password is 123</p> 
+                    </div>
+                   
+
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text">E-Mail</span>
+                    </div>
+                    <input type="email" class="form-control col-lg-2"  name="customerMail"> 
+                    </div>
+
+                   <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text">Balance</span>
+                    </div>
+                    <input type="text" class="form-control col-lg-2" value="0" name="customerBalance"> 
+                    </div>
+                    <br><br>
+                    <input type="submit" class="btn btn-info" value="Create Customer Account">
+            </form>
+
+
+                
+                </div>
+            </section>
+
+                <!-- end users table -->
+
+    
+</body>
+
+</html>
+<script>
+
+
+</script>
