@@ -1,2 +1,2 @@
-*.js linguist-language=nodejs
-*.html linguist-language=nodejs
+*.js linguist-language=NodeJS
+*.html linguist-language=NodeJS
